@@ -1,0 +1,429 @@
+{
+  "mcpTranslationVersion": "0.6",
+  "target": {
+    "ordId": "sap.aribabuyer:apiResource:approval:v2",
+    "type": "openapi-v2"
+  },
+  "serverInfo": {
+    "name": "sap.mcp/document_approval_api",
+    "title": "document_approval_api",
+    "version": "1.0.0",
+    "description": "MCP server for the document_approval_api service."
+  },
+  "tools": [
+    {
+      "name": "get_changes",
+      "title": "get Changes",
+      "description": "Returns the list of approvable documents whose approval state has changed since the last request.  <p>Send the ID of the most recent requisition your client application has processed, if any, in the request headers. This ID is unnecessary if no requisitions have yet been processed.",
+      "openApiType": {
+        "operationId": "get Changes",
+        "parameters": [
+          {
+            "name": "realm",
+            "description": "Unique identifier of the realm. \nTry it out with: mytestrealm",
+            "in": "query",
+            "newParameterName": "realm"
+          },
+          {
+            "name": "limit",
+            "description": "number of changes to return \n Try it out with: 2",
+            "in": "query",
+            "newParameterName": "limit"
+          },
+          {
+            "name": "offset",
+            "description": "starting record number in result set \n Try it out with: 1",
+            "in": "query",
+            "newParameterName": "offset"
+          },
+          {
+            "name": "needTotal",
+            "description": "indicates whether total count of the query",
+            "in": "query",
+            "newParameterName": "needtotal"
+          },
+          {
+            "name": "lastChangeId",
+            "description": "The id of the last change to start the search (if omitted - will start at first change) \n Try it out with: 2",
+            "in": "query",
+            "newParameterName": "lastchangeid"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_document_details",
+      "title": "Get Document Details",
+      "description": "Returns the details of an approvable document (requisition/invoice) identified by the approvable_id parameter.",
+      "openApiType": {
+        "operationId": "Get Document Details",
+        "parameters": [
+          {
+            "name": "approvable_type",
+            "description": "Document type, requisitions or invoices \n Try it out with: requisitions ",
+            "in": "path",
+            "newParameterName": "approvable_type"
+          },
+          {
+            "name": "approvable_id",
+            "description": "Unique identifier of the approvable \n Try it out with: PR2",
+            "in": "path",
+            "newParameterName": "approvable_id"
+          },
+          {
+            "name": "realm",
+            "description": "Unique identifier of the realm \nTry it out with: mytestrealm",
+            "in": "query",
+            "newParameterName": "realm"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    },
+    {
+      "name": "getPendingApprovables",
+      "title": "getPendingApprovables",
+      "description": "List all documents/tasks that are pending approval",
+      "openApiType": {
+        "operationId": "getPendingApprovables",
+        "parameters": [
+          {
+            "name": "realm",
+            "description": "Unique identifier of the realm.",
+            "in": "query",
+            "newParameterName": "realm"
+          },
+          {
+            "name": "user",
+            "description": "user id of the user.",
+            "in": "query",
+            "newParameterName": "user"
+          },
+          {
+            "name": "passwordAdapter",
+            "description": "passwordAdapter of the user.",
+            "in": "query",
+            "newParameterName": "passwordadapter"
+          },
+          {
+            "name": "documentType",
+            "description": "document type the user is requesting.",
+            "in": "query",
+            "newParameterName": "documenttype"
+          },
+          {
+            "name": "offset",
+            "description": "the starting point within the collection of resource results to be returned.",
+            "in": "query",
+            "newParameterName": "offset"
+          },
+          {
+            "name": "limit",
+            "description": "maximum number of items that may be returned for a single request.",
+            "in": "query",
+            "newParameterName": "limit"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GetApproversByGroupName",
+      "title": "GetApproversByGroupName",
+      "description": "Returns the list of users who are members of the group specified in group_name. This API uses the unique name for the group.",
+      "openApiType": {
+        "operationId": "GetApproversByGroupName",
+        "parameters": [
+          {
+            "name": "group_name",
+            "description": "Unique name of the group (base64urlsafe encoded unique name of the group can also be used)\nTry it out with: WXYZ",
+            "in": "path",
+            "newParameterName": "group_name"
+          },
+          {
+            "name": "realm",
+            "description": "Unique identifier of the realm \nTry it out with: mytestrealm",
+            "in": "query",
+            "newParameterName": "realm"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GroupMembers",
+      "title": "GroupMembers",
+      "description": "Returns the list of users who are members of the group specified in group_name. This API uses the baseId to get the group details.",
+      "openApiType": {
+        "operationId": "GroupMembers",
+        "parameters": [
+          {
+            "name": "group_id",
+            "description": "Id of the group \nTry it out with: WXYZ",
+            "in": "path",
+            "newParameterName": "group_id"
+          },
+          {
+            "name": "realm",
+            "description": "\nTry it out with: mytestrealm",
+            "in": "query",
+            "newParameterName": "realm"
+          },
+          {
+            "name": "user",
+            "description": "\nTry it out with: mallen",
+            "in": "query",
+            "newParameterName": "user"
+          },
+          {
+            "name": "passwordadapter",
+            "description": "\nTry it out with: PasswordAdapter1",
+            "in": "query",
+            "newParameterName": "passwordadapter"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_approvable_attachment",
+      "title": "Get Approvable attachment",
+      "description": "Download an attachment associated with the approvable document identified by approvable_id. If the document has one or more attachments, this API returns the attachment specified by the attachment_id parameter.",
+      "openApiType": {
+        "operationId": "Get Approvable attachment",
+        "parameters": [
+          {
+            "name": "approvable_type",
+            "description": "Document type, requisitions or invoices \nTry it out with: requisitions",
+            "in": "path",
+            "newParameterName": "approvable_type"
+          },
+          {
+            "name": "approvable_id",
+            "description": "Unique identifier of the approvable \nTry it out with: PR2",
+            "in": "path",
+            "newParameterName": "approvable_id"
+          },
+          {
+            "name": "attachment_id",
+            "description": "Unique identifier of the attachment \nTry it out with: 2",
+            "in": "path",
+            "newParameterName": "attachment_id"
+          },
+          {
+            "name": "realm",
+            "description": "Unique identifier of the realm \nTry it out with: mytestrealm",
+            "in": "query",
+            "newParameterName": "realm"
+          }
+        ],
+        "requestBody": {
+          "contentType": "application/json"
+        },
+        "responseHeaders": [
+          {
+            "name": "age"
+          },
+          {
+            "name": "cache-control"
+          },
+          {
+            "name": "expires"
+          },
+          {
+            "name": "last-modified"
+          },
+          {
+            "name": "x-request-id"
+          },
+          {
+            "name": "x-correlation-id"
+          },
+          {
+            "name": "content-type"
+          },
+          {
+            "name": "content-encoding"
+          },
+          {
+            "name": "content-language"
+          },
+          {
+            "name": "content-length"
+          }
+        ]
+      }
+    }
+  ]
+}

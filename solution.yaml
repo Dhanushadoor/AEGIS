@@ -1,0 +1,11 @@
+apiVersion: solution.sap/v1
+kind: Solution
+
+metadata:
+  name: approval-prediction-agent-bb341
+  version: "1.0.0"
+
+assets:
+  - ref: ./assets/approval-prediction-agent/asset.yaml
+  - ref: ./assets/sap-s4-reg-assessment-mcp-server/asset.yaml
+  - ref: ./assets/sap-ariba-approval-mcp-server/asset.yaml

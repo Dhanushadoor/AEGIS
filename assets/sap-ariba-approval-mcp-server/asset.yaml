@@ -1,0 +1,19 @@
+apiVersion: asset.sap/v1
+kind: Asset
+type: mcp-server
+
+metadata:
+  name: sap-ariba-approval-mcp-server
+  translation: mcp-translation/translation.json
+  apiSpec: mcp-translation/api-spec.json
+
+requires:
+  - name: approval
+    kind: api
+    ordId: sap.aribabuyer:apiResource:approval:v2
+
+provides:
+  apis:
+    - name: sap-ariba-approval-mcp-server
+      kind: mcp-server
+      ordId: customer.build:apiResource:approval-prediction-agent-bb341.sap-ariba-approval-mcp-server:v1

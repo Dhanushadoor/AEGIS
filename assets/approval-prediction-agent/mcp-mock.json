@@ -1,0 +1,434 @@
+{
+  "servers": {
+    "sap-s4-regulatory-data-assessment": {
+      "mcp_server_name": "sap.mcp/sap_self",
+      "description": "MCP server for SAP S/4HANA Regulatory Data Assessment API — checks compliance rules and regulatory requirements for SAP product requests",
+      "tools": {
+        "get_metadata_sap_self": {
+          "description": "Get metadata of the OData service with optional filtering to reduce token consumption. Returns the metadata in XML format, which can be used to discover available entities and their properties.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "entitySets": {
+                "type": "string",
+                "description": "Comma-separated list of entity sets to filter metadata"
+              }
+            },
+            "required": []
+          },
+          "mock_response": "<?xml version=\"1.0\" encoding=\"utf-8\"?><edmx:Edmx Version=\"1.0\" xmlns:edmx=\"http://schemas.microsoft.com/ado/2007/06/edmx\"><edmx:DataServices><Schema Namespace=\"sap_self\" xmlns=\"http://schemas.microsoft.com/ado/2009/11/edm\"><EntityType Name=\"RegulatoryDataAssessment\"><Key><PropertyRef Name=\"ComplianceRequirementUUID\"/></Key><Property Name=\"ComplianceRequirementUUID\" Type=\"Edm.Guid\" Nullable=\"false\"/><Property Name=\"ProductName\" Type=\"Edm.String\"/><Property Name=\"UsageType\" Type=\"Edm.String\"/><Property Name=\"Region\" Type=\"Edm.String\"/><Property Name=\"ComplianceStatus\" Type=\"Edm.String\"/><Property Name=\"RegulatoryFlag\" Type=\"Edm.String\"/><Property Name=\"AssessmentResult\" Type=\"Edm.String\"/></EntityType></Schema></edmx:DataServices></edmx:Edmx>"
+        },
+        "batch_for_sap_self": {
+          "description": "Execute multiple OData operations in a single batch request using the $batch endpoint.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "requests": {
+                "type": "array",
+                "description": "Array of OData batch requests"
+              }
+            },
+            "required": ["requests"]
+          },
+          "mock_response": {
+            "responses": []
+          }
+        },
+        "list_regulatorydataassessment_for_sap_self": {
+          "description": "Retrieve a list of entities from the RegulatoryDataAssessment collection in the sap_self service.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": {"type": "string", "description": "Maximum number of records to return"},
+              "$filter": {"type": "string", "description": "OData filter expression"},
+              "$select": {"type": "string", "description": "Comma-separated list of properties to return"},
+              "$expand": {"type": "string", "description": "Related entities to expand"},
+              "$orderby": {"type": "string", "description": "Sort order"},
+              "$skip": {"type": "string", "description": "Number of records to skip"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "ComplianceRequirementUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "ProductName": "SAP S/4HANA Cloud",
+                "UsageType": "Production",
+                "Region": "DE",
+                "ComplianceStatus": "Compliant",
+                "RegulatoryFlag": "None",
+                "AssessmentResult": "Approved",
+                "RegulatoryRequirementText": "GDPR data residency requirement met for EU region",
+                "ValidFrom": "/Date(1704067200000)/",
+                "ValidTo": "/Date(9999999999000)/"
+              },
+              {
+                "ComplianceRequirementUUID": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                "ProductName": "SAP Ariba Procurement",
+                "UsageType": "Integration",
+                "Region": "US",
+                "ComplianceStatus": "NonCompliant",
+                "RegulatoryFlag": "MissingDataResidency",
+                "AssessmentResult": "Rejected",
+                "RegulatoryRequirementText": "US data sovereignty rules require on-premise data storage for this configuration",
+                "ValidFrom": "/Date(1704067200000)/",
+                "ValidTo": "/Date(9999999999000)/"
+              }
+            ]
+          }
+        },
+        "get_regulatorydataassessment_for_sap_self": {
+          "description": "Retrieve a single entity by its key from the RegulatoryDataAssessment collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "ComplianceRequirementUUID": {"type": "string", "description": "UUID key of the regulatory assessment"},
+              "$select": {"type": "string", "description": "Comma-separated list of properties to return"},
+              "$expand": {"type": "string", "description": "Related entities to expand"}
+            },
+            "required": ["ComplianceRequirementUUID"]
+          },
+          "mock_response": {
+            "ComplianceRequirementUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "ProductName": "SAP S/4HANA Cloud",
+            "UsageType": "Production",
+            "Region": "DE",
+            "ComplianceStatus": "Compliant",
+            "RegulatoryFlag": "None",
+            "AssessmentResult": "Approved",
+            "RegulatoryRequirementText": "GDPR data residency requirement met for EU region",
+            "ValidFrom": "/Date(1704067200000)/",
+            "ValidTo": "/Date(9999999999000)/"
+          }
+        },
+        "count_regulatorydataassessment_for_sap_self": {
+          "description": "Get the total count of entities in the RegulatoryDataAssessment collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string", "description": "OData filter expression"}
+            },
+            "required": []
+          },
+          "mock_response": 2
+        },
+        "list_regulatorydatadetail1_for_sap_self": {
+          "description": "Retrieve a list of entities from the RegulatoryDataDetail1 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": {"type": "string", "description": "Maximum number of records"},
+              "$filter": {"type": "string", "description": "OData filter expression"},
+              "$select": {"type": "string", "description": "Properties to return"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "DetailUUID": "d1e2f3a4-b5c6-7890-dcba-fedcba987654",
+                "AssessmentUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "DetailType": "RegulatoryRule",
+                "DetailText": "GDPR Article 46 - Cross-border data transfer requirements",
+                "RuleCode": "GDPR-ART46",
+                "Severity": "High"
+              }
+            ]
+          }
+        },
+        "get_regulatorydatadetail1_for_sap_self": {
+          "description": "Retrieve a single entity by its key from the RegulatoryDataDetail1 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "DetailUUID": {"type": "string", "description": "UUID key of the detail record"}
+            },
+            "required": ["DetailUUID"]
+          },
+          "mock_response": {
+            "DetailUUID": "d1e2f3a4-b5c6-7890-dcba-fedcba987654",
+            "AssessmentUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "DetailType": "RegulatoryRule",
+            "DetailText": "GDPR Article 46 - Cross-border data transfer requirements",
+            "RuleCode": "GDPR-ART46",
+            "Severity": "High"
+          }
+        },
+        "count_regulatorydatadetail1_for_sap_self": {
+          "description": "Get the total count of entities in the RegulatoryDataDetail1 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string", "description": "OData filter expression"}
+            },
+            "required": []
+          },
+          "mock_response": 1
+        },
+        "list_regulatorydatadetail2_for_sap_self": {
+          "description": "Retrieve a list of entities from the RegulatoryDataDetail2 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": {"type": "string", "description": "Maximum number of records"},
+              "$filter": {"type": "string", "description": "OData filter expression"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Detail2UUID": "e2f3a4b5-c6d7-8901-efab-cdef01234567",
+                "AssessmentUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "SubDetailType": "ComplianceCheck",
+                "SubDetailText": "Data encryption at rest verified",
+                "CheckResult": "Pass"
+              }
+            ]
+          }
+        },
+        "get_regulatorydatadetail2_for_sap_self": {
+          "description": "Retrieve a single entity by its key from the RegulatoryDataDetail2 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Detail2UUID": {"type": "string", "description": "UUID key of the detail2 record"}
+            },
+            "required": ["Detail2UUID"]
+          },
+          "mock_response": {
+            "Detail2UUID": "e2f3a4b5-c6d7-8901-efab-cdef01234567",
+            "AssessmentUUID": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "SubDetailType": "ComplianceCheck",
+            "SubDetailText": "Data encryption at rest verified",
+            "CheckResult": "Pass"
+          }
+        },
+        "count_regulatorydatadetail2_for_sap_self": {
+          "description": "Get the total count of entities in the RegulatoryDataDetail2 collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string", "description": "OData filter expression"}
+            },
+            "required": []
+          },
+          "mock_response": 1
+        },
+        "list_regulatorydatareasonfornodata_for_sap_self": {
+          "description": "Retrieve a list of entities from the RegulatoryDataReasonForNoData collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": {"type": "string", "description": "Maximum number of records"},
+              "$filter": {"type": "string", "description": "OData filter expression"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": []
+          }
+        },
+        "get_regulatorydatareasonfornodata_for_sap_self": {
+          "description": "Retrieve a single entity by its key from the RegulatoryDataReasonForNoData collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "ReasonUUID": {"type": "string", "description": "UUID key"}
+            },
+            "required": ["ReasonUUID"]
+          },
+          "mock_response": {}
+        },
+        "count_regulatorydatareasonfornodata_for_sap_self": {
+          "description": "Get the total count of entities in the RegulatoryDataReasonForNoData collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "mock_response": 0
+        },
+        "function_getconfiguration_on_sap_self_regulatorydataassessment_t": {
+          "description": "Execute the GetConfiguration function to retrieve service configuration parameters.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "mock_response": {
+            "ConfigKey": "REGULATORY_CHECK_ENABLED",
+            "ConfigValue": "true",
+            "ServiceVersion": "1.0.0"
+          }
+        }
+      }
+    },
+    "sap-aribabuyer-approval": {
+      "mcp_server_name": "sap.mcp/document_approval_api",
+      "description": "MCP server for SAP Ariba Buyer Approval API — retrieves historical approval records and pending approvals for SAP product requests",
+      "tools": {
+        "get_changes": {
+          "description": "Returns the list of approvable documents whose approval state has changed since the last request.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID making the request"},
+              "passwordAdapter": {"type": "string", "description": "Password adapter name"}
+            },
+            "required": ["realm", "user"]
+          },
+          "mock_response": {
+            "approvals": [
+              {
+                "documentId": "REQ-2024-001",
+                "documentType": "ProductLicenseRequest",
+                "productName": "SAP S/4HANA Cloud",
+                "region": "DE",
+                "status": "Approved",
+                "approvalDate": "/Date(1704153600000)/",
+                "approverUserId": "approver1@company.com",
+                "businessJustification": "Production deployment for EU operations"
+              },
+              {
+                "documentId": "REQ-2024-002",
+                "documentType": "ProductLicenseRequest",
+                "productName": "SAP Ariba Procurement",
+                "region": "US",
+                "status": "Rejected",
+                "approvalDate": "/Date(1704240000000)/",
+                "approverUserId": "approver2@company.com",
+                "rejectionReason": "Missing data residency compliance documentation"
+              }
+            ]
+          }
+        },
+        "get_document_details": {
+          "description": "Returns the details of an approvable document (requisition/invoice) identified by the approvable_id parameter.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "approvable_type": {"type": "string", "description": "Type of approvable document"},
+              "approvable_id": {"type": "string", "description": "Unique identifier of the approvable document"},
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID"}
+            },
+            "required": ["approvable_type", "approvable_id", "realm", "user"]
+          },
+          "mock_response": {
+            "documentId": "REQ-2024-001",
+            "documentType": "ProductLicenseRequest",
+            "productName": "SAP S/4HANA Cloud",
+            "region": "DE",
+            "requestorOrg": "Acme Corp",
+            "usageType": "Production",
+            "status": "Approved",
+            "submittedDate": "/Date(1704067200000)/",
+            "approvalDate": "/Date(1704153600000)/",
+            "approverUserId": "approver1@company.com",
+            "businessJustification": "Production deployment for EU operations",
+            "regulatoryChecks": [
+              {"checkName": "GDPR", "result": "Pass"},
+              {"checkName": "DataResidency", "result": "Pass"}
+            ]
+          }
+        },
+        "getPendingApprovables": {
+          "description": "List all documents/tasks that are pending approval.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID"},
+              "$top": {"type": "integer", "description": "Maximum number of results"}
+            },
+            "required": ["realm", "user"]
+          },
+          "mock_response": {
+            "pendingApprovables": [
+              {
+                "documentId": "REQ-2024-010",
+                "documentType": "ProductLicenseRequest",
+                "productName": "SAP SuccessFactors",
+                "region": "APAC",
+                "status": "PendingApproval",
+                "submittedDate": "/Date(1704326400000)/",
+                "requestorOrg": "GlobalCo Ltd"
+              }
+            ]
+          }
+        },
+        "GetApproversByGroupName": {
+          "description": "Returns the list of users who are members of the group specified in group_name.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "group_name": {"type": "string", "description": "Unique name for the approver group"},
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID"}
+            },
+            "required": ["group_name", "realm", "user"]
+          },
+          "mock_response": {
+            "members": [
+              {"userId": "approver1@company.com", "name": "Jane Approver", "role": "ApprovalTeamMember"},
+              {"userId": "approver2@company.com", "name": "John Reviewer", "role": "SeniorApprover"}
+            ]
+          }
+        },
+        "GroupMembers": {
+          "description": "Returns the list of users who are members of the group specified by baseId.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "group_id": {"type": "string", "description": "Base ID of the group"},
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID"}
+            },
+            "required": ["group_id", "realm", "user"]
+          },
+          "mock_response": {
+            "members": [
+              {"userId": "approver1@company.com", "name": "Jane Approver"},
+              {"userId": "approver2@company.com", "name": "John Reviewer"}
+            ]
+          }
+        },
+        "get_approvable_attachment": {
+          "description": "Download an attachment associated with the approvable document.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "approvable_type": {"type": "string", "description": "Type of approvable document"},
+              "approvable_id": {"type": "string", "description": "Unique identifier of the approvable"},
+              "attachment_id": {"type": "string", "description": "Unique identifier of the attachment"},
+              "realm": {"type": "string", "description": "The Ariba realm name"},
+              "user": {"type": "string", "description": "User ID"}
+            },
+            "required": ["approvable_type", "approvable_id", "attachment_id", "realm", "user"]
+          },
+          "mock_response": {
+            "attachmentId": "ATT-001",
+            "fileName": "compliance-certificate.pdf",
+            "contentType": "application/pdf",
+            "sizeBytes": 204800
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_for_agent": "approval-prediction-agent",
+    "mock_mode": true,
+    "deterministic": true,
+    "total_servers": 2,
+    "total_tools": 19,
+    "generated_from": [
+      "assets/sap-s4-regulatory-data-assessment-mcp-server/mcp-translation/translation.json",
+      "assets/sap-aribabuyer-approval-mcp-server/mcp-translation/translation.json"
+    ],
+    "generation_date": "2026-10-07"
+  }
+}
